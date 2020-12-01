@@ -5,19 +5,35 @@ buildscript {
     apply from: 'dependencies.gradle'
 
     repositories {
-        jcenter()
-        mavenCentral()
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
+//        jcenter {
+//            url "http://jcenter.bintray.com/"
+//        }
     }
     dependencies {
-        classpath gradlePlugins.android
+//        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.mob.sdk:MobSDK:+'
+        classpath 'com.mob.sdk:MobSDK-Impl:2018.0710.1743'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-        google()
-
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            url 'https://dl.bintray.com/youzanyun/maven/'
+        }
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
